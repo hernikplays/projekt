@@ -1,58 +1,56 @@
 <?php
-$servername = "localhost";
-$username = "joeuser";
-$password = "BruhMoment";
-$dbName = "joe";
+    $servername = "localhost";
+    $username = "joeuser";
+    $password = "BruhMoment";
+    $dbName = "joe";
 
-$conn = new mysqli($servername, $username, $password, $dbName);
+    $conn = new mysqli($servername, $username, $password, $dbName);
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "CREATE TABLE skladby (
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+    
+    $sql = "CREATE TABLE skladby (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         nazev VARCHAR(30),
         cena INT(6)
         )";
-
-if ($conn->query($sql) === true) {
-    echo "Table created successfully";
-}
-
-/*$insert = "INSERT INTO skladby (nazev,cena)
+    
+    if ($conn->query($sql) === TRUE) {
+        echo "Table created successfully";
+    } 
+        
+    /*$insert = "INSERT INTO skladby (nazev,cena)
         VALUES ('Vysoký jalovec',30)";
     if ($conn->query($insert) === TRUE) {
         echo "New record created successfully";
     }*/
 
-// Vybrat z DB
-$select = "SELECT * FROM skladby";
-$result = $conn->query($select);
-$pisnicky = [];
+    // Vybrat z DB
+    $select = "SELECT * FROM skladby";
+    $result = $conn->query($select);
+    $pisnicky = array();
 
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        array_push($pisnicky, [
-            "id" => $row["id"],
-            "nazev" => $row["nazev"],
-            "cena" => $row["cena"],
-        ]); // uložíme do array
+    if ($result->num_rows > 0) {
+        // output data of each row
+        while($row = $result->fetch_assoc()) {
+            array_push($pisnicky,array("id"=>$row["id"],"nazev"=>$row["nazev"],"cena"=>$row["cena"])); // uložíme do array
+        }
     }
-}
 
-$pocet = count($pisnicky);
-if ($pocet == 1) {
-    $slovo = "skladba";
-} elseif ($pocet > 1 && $pocet < 5) {
-    $slovo = "skladby";
-} else {
-    $slovo = "skladeb";
-}
+    $pocet = count($pisnicky);
+    if($pocet == 1){
+        $slovo = "skladba";
+    }
+    else if($pocet > 1 && $pocet < 5){
+        $slovo = "skladby";
+    }
+    else{
+        $slovo = "skladeb";
+    }
 
-$conn->close();
+    $conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -76,15 +74,13 @@ $conn->close();
     </nav>
     <div class="content">
         <h1>Obchod</h1>
-        <h2><?php echo $pocet . " " . $slovo; ?></h2>
+        <h2><?php echo $pocet . " " . $slovo?></h2>
         <div class="seznam">
-        <?php for ($i = 0; $i < $pocet; $i++) {
-            echo "<div class='skladba'><img src='https://via.placeholder.com/300'><br><p class='nazev'>" .
-                $pisnicky[$i]["nazev"] .
-                "</p> <p class='cena'>" .
-                $pisnicky[$i]["cena"] .
-                " Kč</p></div>";
-        } ?>
+        <?php
+        for ($i=0; $i < $pocet; $i++) { 
+            echo "<div class='skladba'><img src='https://via.placeholder.com/300'><br><p class='nazev'>".$pisnicky[$i]["nazev"]."</p> <p class='cena'>".$pisnicky[$i]["cena"]." Kč</p></div>";
+        }
+        ?>
         </div>
     </div>
 </body>
