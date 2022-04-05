@@ -1,62 +1,65 @@
 <?php
-    $servername = "localhost";
-    $username = "joeuser";
-    $password = "BruhMoment";
-    $dbName = "joe";
+$servername = "localhost";
+$username = "joeuser";
+$password = "BruhMoment";
+$dbName = "joe";
 
-    $admin = "admin"; 
+$admin = "admin";
 $adminpass = "password";
- 
-if(isset($_POST['submit'])){
-    if($_POST['username'] == $admin && $_POST['password'] == $adminpass){
+
+if (isset($_POST["submit"])) {
+    if ($_POST["username"] == $admin && $_POST["password"] == $adminpass) {
+
         //EXECUTE YOUR CODE HERE
         $conn = new mysqli($servername, $username, $password, $dbName);
 
-    // Check connection
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-    
-    $sql = "CREATE TABLE skladby (
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = "CREATE TABLE skladby (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         nazev VARCHAR(30),
         cena INT(6)
         )";
-    
-    if ($conn->query($sql) === TRUE) {
-        echo "Table created successfully";
-    } 
-        
-    /*$insert = "INSERT INTO skladby (nazev,cena)
+
+        if ($conn->query($sql) === true) {
+            echo "Table created successfully";
+        }
+
+        /*$insert = "INSERT INTO skladby (nazev,cena)
         VALUES ('Vysoký jalovec',30)";
     if ($conn->query($insert) === TRUE) {
         echo "New record created successfully";
     }*/
 
-    // Vybrat z DB
-    $select = "SELECT * FROM skladby";
-    $result = $conn->query($select);
-    $pisnicky = array();
+        // Vybrat z DB
+        $select = "SELECT * FROM skladby";
+        $result = $conn->query($select);
+        $pisnicky = [];
 
-    if ($result->num_rows > 0) {
-        // output data of each row
-        while($row = $result->fetch_assoc()) {
-            array_push($pisnicky,array("id"=>$row["id"],"nazev"=>$row["nazev"],"cena"=>$row["cena"])); // uložíme do array
+        if ($result->num_rows > 0) {
+            // output data of each row
+            while ($row = $result->fetch_assoc()) {
+                array_push($pisnicky, [
+                    "id" => $row["id"],
+                    "nazev" => $row["nazev"],
+                    "cena" => $row["cena"],
+                ]); // uložíme do array
+            }
         }
-    }
 
-    $pocet = count($pisnicky);
-    if($pocet == 1){
-        $slovo = "skladba";
-    }
-    else if($pocet > 1 && $pocet < 5){
-        $slovo = "skladby";
-    }
-    else{
-        $slovo = "skladeb";
-    }
+        $pocet = count($pisnicky);
+        if ($pocet == 1) {
+            $slovo = "skladba";
+        } elseif ($pocet > 1 && $pocet < 5) {
+            $slovo = "skladby";
+        } else {
+            $slovo = "skladeb";
+        }
 
-    $conn->close();
+        $conn->close();
         ?>
         <!DOCTYPE html>
 <html lang="en">
@@ -73,13 +76,17 @@ if(isset($_POST['submit'])){
 <body>
     <div class="content">
         <h1>Obchod</h1>
-        <h2><?php echo $pocet . " " . $slovo?></h2>
+        <h2><?php echo $pocet . " " . $slovo; ?></h2>
         <div class="seznam">
-            <?php
-        for ($i=0; $i < $pocet; $i++) { 
-            echo "<div class='skladba'><p class='nazev'>".$pisnicky[$i]["nazev"]."</p> <p class='cena'>".$pisnicky[$i]["cena"]." Kč</p> <button onclick='odstranit(".$pisnicky[$i]["id"].")'>Odstranit</button></div>";
-        }
-        ?>
+            <?php for ($i = 0; $i < $pocet; $i++) {
+                echo "<div class='skladba'><p class='nazev'>" .
+                    $pisnicky[$i]["nazev"] .
+                    "</p> <p class='cena'>" .
+                    $pisnicky[$i]["cena"] .
+                    " Kč</p> <button onclick='odstranit(" .
+                    $pisnicky[$i]["id"] .
+                    ")'>Odstranit</button></div>";
+            } ?>
         <h1>Přidat skladbu</h1>
         <form action="./funkce.php" method="POST">
             <label for="nazev">Název:</label>
@@ -103,11 +110,13 @@ if(isset($_POST['submit'])){
 </body>
 </html>
 <?php
-        } else {
+    } else {
         echo "Uživatelské jméno a heslo nesouhlasí";
-        }
-} else { //IF THE FORM WAS NOT SUBMITTED
-//SHOW FORM
+    }
+} else {
+    <?php
+    //IF THE FORM WAS NOT SUBMITTED
+    //SHOW FORM
     ?><form method="post">
     Username: <input type="text" name="username" /><br />
     Password: <input type="password" name="password" />
@@ -116,3 +125,4 @@ if(isset($_POST['submit'])){
 }
 ?>
 
+ ?>
