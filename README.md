@@ -1,3 +1,3 @@
-# projekt
+bože, já doufal, že nic takového nikdy neuvidím
 
-Školní věci v PHP
+![bolest](https://files.catbox.moe/74khae.png)
