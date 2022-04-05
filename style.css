@@ -1,100 +1,101 @@
-html,body{
-    margin:0;
-    padding:0;
-    color:white;
-    font-family: 'Roboto', sans-serif;
-    height: 100%;
-    width: 100%;
-    overflow-y: hidden;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
 }
 
 /* NAVBAR */
 ul.nav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #50514F;
-  }
-  
-  ul.nav li {
-    float: left;
-  }
-  
-  ul.nav li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
-  ul.nav li a:hover {
-    background-color: #111;
-  }
-
-  li.active{
-    background-color: #111;
-  }
-
-  /* STYL PRO DOMOVSKOU STRÁNKU */
-
-h1{
-    font-family: 'Exo', sans-serif;
-    font-weight: 800;
-    font-size: 150px;
-    margin:0;
-    padding-top: 25px;
-}
-h2{
-    margin:0;
-    font-size: 40px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #50514f;
 }
 
-.home{
-    height: 100%;
-    background-image: url("./images/cover.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
+ul.nav li {
+  float: left;
 }
 
-.container{
-    width: 40%;
-    text-align: center;
+ul.nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
-button{
-    border:none;
-    border-radius: 4px;
-    margin-top: 10px;
-    font-size: 26px;
-    padding: 8px;
-    background-color: #A1E8AF;
+ul.nav li a:hover {
+  background-color: #111;
 }
 
-button:hover{
-    background-color: #5BD774;
-    cursor:pointer;
+li.active {
+  background-color: #111;
 }
 
-button:active{
-    background-color: #2CB547;
+/* STYL PRO DOMOVSKOU STRÁNKU */
+
+h1 {
+  font-family: "Exo", sans-serif;
+  font-weight: 800;
+  font-size: 150px;
+  margin: 0;
+  padding-top: 25px;
+}
+h2 {
+  margin: 0;
+  font-size: 40px;
+}
+
+.home {
+  height: 100%;
+  background-image: url("./images/cover.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 40%;
+  text-align: center;
+}
+
+button {
+  border: none;
+  border-radius: 4px;
+  margin-top: 10px;
+  font-size: 26px;
+  padding: 8px;
+  background-color: #a1e8af;
+}
+
+button:hover {
+  background-color: #5bd774;
+  cursor: pointer;
+}
+
+button:active {
+  background-color: #2cb547;
 }
 
 /* MOBIL */
 @media only screen and (max-width: 768px) {
-    .container{
-        width: 100%;
-    }
-    h1{
-        font-size: 50px;
-        padding: 0;
-    }
-    h2{
-        font-size: 20px;
-        padding: 0;
-    }
-    button{
-        font-size: 20px;
-    }
+  .container {
+    width: 100%;
   }
+  h1 {
+    font-size: 50px;
+    padding: 0;
+  }
+  h2 {
+    font-size: 20px;
+    padding: 0;
+  }
+  button {
+    font-size: 20px;
+  }
+}
