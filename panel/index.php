@@ -114,7 +114,7 @@ if (isset($_POST["submit"])) {
         echo "Uživatelské jméno a heslo nesouhlasí";
     }
 } else {
-    
+    <?php
     //IF THE FORM WAS NOT SUBMITTED
     //SHOW FORM
     ?><form method="post">

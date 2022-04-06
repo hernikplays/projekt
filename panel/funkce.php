@@ -24,10 +24,10 @@ function delete($id)
     $password = "BruhMoment";
     $dbName = "joe";
     $conn = new mysqli($servername, $username, $password, $dbName);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    // Check connection
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
     $sql = "DELETE FROM skladby WHERE id=" . $id;
 
     if ($conn->query($sql) === true) {
@@ -48,16 +48,20 @@ function insert($nazev, $cena)
     $dbName = "joe";
     $conn = new mysqli($servername, $username, $password, $dbName);
     // Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-    $insert = "INSERT INTO skladby (nazev,cena)
-        VALUES ('".$nazev."',".$cena.")";
-    if ($conn->query($insert) === TRUE) {
-        echo "Skladba přidána";
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
     }
-    else{
-        echo "Chyba: ".$conn->error;
+    $insert =
+        "INSERT INTO skladby (nazev,cena)
+        VALUES ('" .
+        $nazev .
+        "'," .
+        $cena .
+        ")";
+    if ($conn->query($insert) === true) {
+        echo "Skladba přidána";
+    } else {
+        echo "Chyba: " . $conn->error;
         exit(500);
     }
     exit();
