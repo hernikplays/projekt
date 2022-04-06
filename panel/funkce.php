@@ -1,9 +1,5 @@
 <?php
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
 if (isset($_POST["action"])) {
     switch ($_POST["action"]) {
         case "insert":
@@ -28,11 +24,14 @@ function delete($id)
     $password = "BruhMoment";
     $dbName = "joe";
     $conn = new mysqli($servername, $username, $password, $dbName);
-
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
     $sql = "DELETE FROM skladby WHERE id=" . $id;
 
     if ($conn->query($sql) === true) {
-        echo "Record deleted successfully";
+        echo "Skladba odstraněna";
     } else {
         echo "Error deleting record: " . $conn->error;
         exit(500);
@@ -43,8 +42,24 @@ function delete($id)
 
 function insert($nazev, $cena)
 {
-    // TODO
-    echo "The insert function is called.";
+    $servername = "localhost";
+    $username = "joeuser";
+    $password = "BruhMoment";
+    $dbName = "joe";
+    $conn = new mysqli($servername, $username, $password, $dbName);
+    // Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+    $insert = "INSERT INTO skladby (nazev,cena)
+        VALUES ('".$nazev."',".$cena.")";
+    if ($conn->query($insert) === TRUE) {
+        echo "Skladba přidána";
+    }
+    else{
+        echo "Chyba: ".$conn->error;
+        exit(500);
+    }
     exit();
 }
 ?>

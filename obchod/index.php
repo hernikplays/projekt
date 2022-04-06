@@ -21,12 +21,6 @@ if ($conn->query($sql) === true) {
     echo "Table created successfully";
 }
 
-/*$insert = "INSERT INTO skladby (nazev,cena)
-        VALUES ('Vysoký jalovec',30)";
-    if ($conn->query($insert) === TRUE) {
-        echo "New record created successfully";
-    }*/
-
 // Vybrat z DB
 $select = "SELECT * FROM skladby";
 $result = $conn->query($select);
