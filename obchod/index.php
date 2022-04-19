@@ -76,53 +76,65 @@ $conn->close();
         <?php for ($i = 0; $i < $pocet; $i++) {
             if (isset($_COOKIE[$cookie])) {
                 // Pokud máme sušenku
-                if(strpos($_COOKIE[$cookie],"-") !== false){
+                if (strpos($_COOKIE[$cookie], "-") !== false) {
                     // sušenka obsahuje víc hodnot
-                    $rozdel = explode("-",$_COOKIE[$cookie]);
-                    if(in_array($i,$rozdel)){
+                    $rozdel = explode("-", $_COOKIE[$cookie]);
+                    if (in_array($i, $rozdel)) {
                         // pokud je hodnota v poli, objekt již je v košíku
                         echo "<div class='skladba'><img src='https://via.placeholder.com/300'><br><p class='nazev'>" .
-                        $pisnicky[$i]["nazev"] .
-                        "</p> <p class='cena'>" .
-                        $pisnicky[$i]["cena"] .
-                        " Kč</p><br><button onclick='pryc(".$i.",\"".$_COOKIE[$cookie]."\")'>Z košíku</button></div>";
-                    }
-                    else{
+                            $pisnicky[$i]["nazev"] .
+                            "</p> <p class='cena'>" .
+                            $pisnicky[$i]["cena"] .
+                            " Kč</p><br><button onclick='pryc(" .
+                            $i .
+                            ",\"" .
+                            $_COOKIE[$cookie] .
+                            "\")'>Z košíku</button></div>";
+                    } else {
                         echo "<div class='skladba'><img src='https://via.placeholder.com/300'><br><p class='nazev'>" .
-                        $pisnicky[$i]["nazev"] .
-                        "</p> <p class='cena'>" .
-                        $pisnicky[$i]["cena"] .
-                        " Kč</p><br><button onclick='kosik(".$i.",\"".$_COOKIE[$cookie]."\")'>Do košíku</button></div>";
+                            $pisnicky[$i]["nazev"] .
+                            "</p> <p class='cena'>" .
+                            $pisnicky[$i]["cena"] .
+                            " Kč</p><br><button onclick='kosik(" .
+                            $i .
+                            ",\"" .
+                            $_COOKIE[$cookie] .
+                            "\")'>Do košíku</button></div>";
                     }
-                }
-                else{
+                } else {
                     // sušenka má jen jednu hodnotu
-                    if(strpos($_COOKIE[$cookie],strval($i)) !== false){
+                    if (strpos($_COOKIE[$cookie], strval($i)) !== false) {
                         // pokud je hodnota v poli, objekt již je v košíku
                         echo "<div class='skladba'><img src='https://via.placeholder.com/300'><br><p class='nazev'>" .
-                        $pisnicky[$i]["nazev"] .
-                        "</p> <p class='cena'>" .
-                        $pisnicky[$i]["cena"] .
-                        " Kč</p><br><button onclick='pryc(".$i.",\"".$_COOKIE[$cookie]."\")'>Z košíku</button></div>";
-                    }
-                    else{
+                            $pisnicky[$i]["nazev"] .
+                            "</p> <p class='cena'>" .
+                            $pisnicky[$i]["cena"] .
+                            " Kč</p><br><button onclick='pryc(" .
+                            $i .
+                            ",\"" .
+                            $_COOKIE[$cookie] .
+                            "\")'>Z košíku</button></div>";
+                    } else {
                         echo "<div class='skladba'><img src='https://via.placeholder.com/300'><br><p class='nazev'>" .
-                        $pisnicky[$i]["nazev"] .
-                        "</p> <p class='cena'>" .
-                        $pisnicky[$i]["cena"] .
-                        " Kč</p><br><button onclick='kosik(".$i.",\"".$_COOKIE[$cookie]."\")'>Do košíku</button></div>";
+                            $pisnicky[$i]["nazev"] .
+                            "</p> <p class='cena'>" .
+                            $pisnicky[$i]["cena"] .
+                            " Kč</p><br><button onclick='kosik(" .
+                            $i .
+                            ",\"" .
+                            $_COOKIE[$cookie] .
+                            "\")'>Do košíku</button></div>";
                     }
                 }
-                
-            }
-            else{
+            } else {
                 echo "<div class='skladba'><img src='https://via.placeholder.com/300'><br><p class='nazev'>" .
-                $pisnicky[$i]["nazev"] .
-                "</p> <p class='cena'>" .
-                $pisnicky[$i]["cena"] .
-                " Kč</p><br><button onclick='kosik(".$i.",\"\")'>Do košíku</button></div>";
+                    $pisnicky[$i]["nazev"] .
+                    "</p> <p class='cena'>" .
+                    $pisnicky[$i]["cena"] .
+                    " Kč</p><br><button onclick='kosik(" .
+                    $i .
+                    ",\"\")'>Do košíku</button></div>";
             }
-            
         } ?>
         </div>
     </div>

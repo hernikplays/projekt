@@ -36,9 +36,9 @@ if ($result->num_rows > 0) {
     }
 }
 $conn->close();
-if(isset($_COOKIE[$cookie])){
-    for ($i=0; $i < count($pisnicky); $i++) { 
-        if(strpos($_COOKIE[$cookie],strval($i)) !== false){
+if (isset($_COOKIE[$cookie])) {
+    for ($i = 0; $i < count($pisnicky); $i++) {
+        if (strpos($_COOKIE[$cookie], strval($i)) !== false) {
             // skladba je v košíku
 
             // TODO: Zobrazit
