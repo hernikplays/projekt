@@ -10,7 +10,6 @@ $adminpass = "password";
 if (isset($_POST["submit"])) {
     if ($_POST["username"] == $admin && $_POST["password"] == $adminpass) {
 
-        //EXECUTE YOUR CODE HERE
         $conn = new mysqli($servername, $username, $password, $dbName);
 
         // Check connection
@@ -27,12 +26,6 @@ if (isset($_POST["submit"])) {
         if ($conn->query($sql) === true) {
             echo "Table created successfully";
         }
-
-        /*$insert = "INSERT INTO skladby (nazev,cena)
-        VALUES ('Vysoký jalovec',30)";
-    if ($conn->query($insert) === TRUE) {
-        echo "New record created successfully";
-    }*/
 
         // Vybrat z DB
         $select = "SELECT * FROM skladby";
