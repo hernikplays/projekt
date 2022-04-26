@@ -27,19 +27,18 @@ $select = "SELECT * FROM skladby";
 $result = $conn->query($select);
 $pisnicky = [];
 
-if(isset($_COOKIE[$cookie])){
+if (isset($_COOKIE[$cookie])) {
     if ($result->num_rows > 0) {
-            
-            while ($row = $result->fetch_assoc()) {
-                if(strpos($_COOKIE[$cookie], strval($row["id"])) !== false){ // pokud je ID v sušence (v košíku)
-                    array_push($pisnicky, [
-                        "id" => $row["id"],
-                        "nazev" => $row["nazev"],
-                        "cena" => $row["cena"],
-                    ]); // uložíme do array
-                }
+        while ($row = $result->fetch_assoc()) {
+            if (strpos($_COOKIE[$cookie], strval($row["id"])) !== false) {
+                // pokud je ID v sušence (v košíku)
+                array_push($pisnicky, [
+                    "id" => $row["id"],
+                    "nazev" => $row["nazev"],
+                    "cena" => $row["cena"],
+                ]); // uložíme do array
             }
-        
+        }
     }
 }
 
@@ -79,17 +78,24 @@ $conn->close();
         <h1>Váš košík:</h1>
         <h2><?php echo $pocet . " " . $slovo; ?></h2>
         <div class="seznam">
-        <?php 
-            if ($pocet > 0) {
-                // Máme něco v košíku
-                for ($i=0; $i < $pocet; $i++) { 
-                $id = $i+1;
-                    echo "<div class='row'><p class='nazev'>".$pisnicky[$i]["nazev"]."</p><p class='cena'>".$pisnicky[$i]["cena"]." kč</p><button onclick='pryc(".$id.",\"".$_COOKIE[$cookie]."\")'>X</button></div><br>";
-                }
-                echo "<button onclick='zakoupit'>Zakoupit</button>";
-            } else {
-                echo "<h2>Žádné produkty v košíku</h2>";
-            } ?>
+        <?php if ($pocet > 0) {
+            // Máme něco v košíku
+            for ($i = 0; $i < $pocet; $i++) {
+                $id = $i + 1;
+                echo "<div class='row'><p class='nazev'>" .
+                    $pisnicky[$i]["nazev"] .
+                    "</p><p class='cena'>" .
+                    $pisnicky[$i]["cena"] .
+                    " kč</p><button onclick='pryc(" .
+                    $id .
+                    ",\"" .
+                    $_COOKIE[$cookie] .
+                    "\")'>X</button></div><br>";
+            }
+            echo "<button onclick='zakoupit'>Zakoupit</button>";
+        } else {
+            echo "<h2>Žádné produkty v košíku</h2>";
+        } ?>
         </div>
     </div>
     <script>
