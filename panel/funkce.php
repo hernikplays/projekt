@@ -1,6 +1,17 @@
 <?php
 
 if (isset($_POST["action"])) {
+    $servername = "localhost";
+    $username = "joeuser";
+    $password = "BruhMoment";
+    $dbName = "joe";
+    $conn = new mysqli($servername, $username, $password, $dbName);
+    $sql = "CREATE TABLE skladby (
+        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        nazev VARCHAR(30),
+        cena INT(6)
+        )";
+    $conn->query($sql);
     switch ($_POST["action"]) {
         case "insert":
             if (isset($_POST["nazev"]) && isset($_POST["cena"])) {
