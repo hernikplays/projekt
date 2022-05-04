@@ -90,9 +90,9 @@ $conn->close();
                     $id .
                     ",\"" .
                     $_COOKIE[$cookie] .
-                    "\")'>X</button></div><br>";
+                    "\")' class='x'>X</button></div><br>";
             }
-            echo "<button onclick='zakoupit'>Zakoupit</button>";
+            echo "<button onclick='zakoupit()'>Zakoupit</button>";
         } else {
             echo "<h2>Žádné produkty v košíku</h2>";
         } ?>
@@ -114,6 +114,20 @@ $conn->close();
             else{
                 http.send("action=nastav&hodnota="+hodnota.replace("-"+id,"").replace(id+"-",""));
             }
+        }
+
+        function zakoupit(){
+            let http = new XMLHttpRequest();
+            http.open("POST","../hotovo/index.php",true)
+            http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            http.onreadystatechange = ()=>{
+                if(http.readyState == 4 && http.status == 200) {
+                    var newDoc = document.open('text/html', 'replace');
+                    newDoc.write(http.responseText);
+                    newDoc.close();
+                }
+            }
+            http.send("key=yes")
         }
         </script>
 </body>
