@@ -37,6 +37,6 @@ HTML;
     echo "Chyba: neplatný vstup";
     exit(400);
 }
+
 ?>
 
- ?>
