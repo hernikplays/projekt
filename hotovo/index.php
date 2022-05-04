@@ -1,6 +1,10 @@
 <?php
 $cookie = "kosik";
-if(isset($_POST["key"]) and isset($_COOKIE[$cookie]) and $_POST["key"] == true){
+if (
+    isset($_POST["key"]) and
+    isset($_COOKIE[$cookie]) and
+    $_POST["key"] == true
+) {
     echo <<<HTML
     <!DOCTYPE html>
 <html lang="en">
@@ -29,10 +33,10 @@ if(isset($_POST["key"]) and isset($_COOKIE[$cookie]) and $_POST["key"] == true){
 
 </html>
 HTML;
-}
-else{
+} else {
     echo "Chyba: neplatný vstup";
     exit(400);
 }
 ?>
 
+ ?>

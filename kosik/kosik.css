@@ -80,7 +80,7 @@ h2 {
   margin-left: 10px;
 }
 
-.row{
+.row {
   background-color: rgb(51, 51, 51);
   width: 13%;
   margin: auto;
@@ -92,21 +92,21 @@ h2 {
   padding-right: 10px;
 }
 
-.x{
-  border:none;
+.x {
+  border: none;
   border-radius: 4px;
   background-color: red;
-  color:white;
+  color: white;
   font-size: 16px;
   padding: 4px;
   width: 27px;
   text-align: center;
 }
 
-.x:hover{
+.x:hover {
   background-color: rgb(202, 1, 1);
 }
 
-.x:active{
+.x:active {
   background-color: rgb(163, 0, 0);
 }
