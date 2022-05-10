@@ -5,6 +5,8 @@ if (
     isset($_COOKIE[$cookie]) and
     $_POST["key"] == true
 ) {
+    // TODO: $id = $_COOKIE[$cookie];
+    setcookie($cookie, "", time() - 3600, "/");
     echo <<<HTML
     <!DOCTYPE html>
 <html lang="en">

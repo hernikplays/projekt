@@ -1,0 +1,66 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  font-family: "Roboto", sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+  background: rgb(6, 6, 6);
+  background: linear-gradient(
+    328deg,
+    rgba(6, 6, 6, 1) 0%,
+    rgba(128, 128, 128, 1) 100%
+  );
+}
+
+/* NAVBAR */
+ul.nav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #50514f;
+}
+
+ul.nav li {
+  float: left;
+}
+
+ul.nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.nav li a:hover {
+  background-color: #111;
+}
+
+li.active {
+  background-color: #111;
+}
+
+/* Zbytek */
+
+h1 {
+  font-family: "Exo", sans-serif;
+  font-weight: 800;
+  font-size: 150px;
+  margin: 0;
+  padding-top: 25px;
+}
+.container {
+    width: 100%;
+    text-align: center;
+  }
+p{
+    font-size: 20px;
+}
+img{
+    width: 400px;
+    border-radius: 15px;
+}
