@@ -5,30 +5,42 @@ $username = "joeuser";
 $password = "BruhMoment";
 $dbName = "joe";
 
-function nacistDb(){
-    $conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+function nacistDb()
+{
+    $conn = new mysqli(
+        $GLOBALS["servername"],
+        $GLOBALS["username"],
+        $GLOBALS["password"],
+        $GLOBALS["dbName"]
+    );
 
-        // Ověřit spojení
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    // Ověřit spojení
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-        $sql = "CREATE TABLE skladby (
+    $sql = "CREATE TABLE skladby (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         nazev VARCHAR(30),
         cena INT(6),
         soubor VARCHAR(50)
         )";
 
-        if ($conn->query($sql) === true) {
-            echo "Table created successfully";
-        }
+    if ($conn->query($sql) === true) {
+        echo "Table created successfully";
+    }
 
-        $conn->close();
+    $conn->close();
 }
 
-function zobrazitDb(){
-    $conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+function zobrazitDb()
+{
+    $conn = new mysqli(
+        $GLOBALS["servername"],
+        $GLOBALS["username"],
+        $GLOBALS["password"],
+        $GLOBALS["dbName"]
+    );
 
     // Ověřit spojení
     if ($conn->connect_error) {
@@ -56,8 +68,14 @@ function zobrazitDb(){
     return $pisnicky;
 }
 
-function zobrazitPodleId($id){
-    $conn = new mysqli($GLOBALS["servername"], $GLOBALS["username"], $GLOBALS["password"], $GLOBALS["dbName"]);
+function zobrazitPodleId($id)
+{
+    $conn = new mysqli(
+        $GLOBALS["servername"],
+        $GLOBALS["username"],
+        $GLOBALS["password"],
+        $GLOBALS["dbName"]
+    );
 
     // Ověřit spojení
     if ($conn->connect_error) {
@@ -65,7 +83,7 @@ function zobrazitPodleId($id){
     }
 
     // Vybrat z DB
-    $select = "SELECT * FROM skladby WHERE id=".$id;
+    $select = "SELECT * FROM skladby WHERE id=" . $id;
     $result = $conn->query($select);
     $row = $result->fetch_assoc();
     $conn->close();

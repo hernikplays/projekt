@@ -10,14 +10,13 @@ nacistDb();
 
 $pisnicky = [];
 
-if(isset($_COOKIE[$cookie])){
-    if(strpos($_COOKIE[$cookie],"-")){
-        foreach (explode("-",$_COOKIE[$cookie]) as $i) {
-            array_push($pisnicky,zobrazitPodleId($i));
+if (isset($_COOKIE[$cookie])) {
+    if (strpos($_COOKIE[$cookie], "-")) {
+        foreach (explode("-", $_COOKIE[$cookie]) as $i) {
+            array_push($pisnicky, zobrazitPodleId($i));
         }
-    }
-    else{
-        array_push($pisnicky,zobrazitPodleId($_COOKIE[$cookie]));
+    } else {
+        array_push($pisnicky, zobrazitPodleId($_COOKIE[$cookie]));
     }
 }
 
@@ -29,7 +28,6 @@ if ($pocet == 1) {
 } else {
     $slovo = "skladeb";
 }
-
 ?>
 
 <!DOCTYPE html>

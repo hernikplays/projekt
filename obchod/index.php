@@ -13,7 +13,6 @@ if ($pocet == 1) {
 } else {
     $slovo = "skladeb";
 }
-
 ?>
 
 <!DOCTYPE html>

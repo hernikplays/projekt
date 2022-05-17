@@ -15,7 +15,11 @@ if (isset($_POST["action"])) {
     $conn->query($sql);
     switch ($_POST["action"]) {
         case "insert":
-            if (isset($_POST["nazev"]) && isset($_POST["cena"])&& isset($_POST["cesta"])) {
+            if (
+                isset($_POST["nazev"]) &&
+                isset($_POST["cena"]) &&
+                isset($_POST["cesta"])
+            ) {
                 insert($_POST["nazev"], $_POST["cena"], $_POST["cesta"]);
             }
             break;
@@ -71,7 +75,7 @@ function insert($nazev, $cena, $soubor)
         $cena .
         "','" .
         $soubor .
-        "'".
+        "'" .
         ")";
     if ($conn->query($insert) === true) {
         echo "Skladba přidána";
