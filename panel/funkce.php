@@ -9,13 +9,14 @@ if (isset($_POST["action"])) {
     $sql = "CREATE TABLE skladby (
         id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         nazev VARCHAR(30),
-        cena INT(6)
+        cena INT(6),
+        soubor VARCHAR(50)
         )";
     $conn->query($sql);
     switch ($_POST["action"]) {
         case "insert":
-            if (isset($_POST["nazev"]) && isset($_POST["cena"])) {
-                insert($_POST["nazev"], $_POST["cena"]);
+            if (isset($_POST["nazev"]) && isset($_POST["cena"])&& isset($_POST["cesta"])) {
+                insert($_POST["nazev"], $_POST["cena"], $_POST["cesta"]);
             }
             break;
         case "delete":
@@ -51,7 +52,7 @@ function delete($id)
     exit();
 }
 
-function insert($nazev, $cena)
+function insert($nazev, $cena, $soubor)
 {
     $servername = "localhost";
     $username = "joeuser";
@@ -63,11 +64,14 @@ function insert($nazev, $cena)
         die("Connection failed: " . $conn->connect_error);
     }
     $insert =
-        "INSERT INTO skladby (nazev,cena)
+        "INSERT INTO skladby (nazev,cena,soubor)
         VALUES ('" .
         $nazev .
-        "'," .
+        "','" .
         $cena .
+        "','" .
+        $soubor .
+        "'".
         ")";
     if ($conn->query($insert) === true) {
         echo "Skladba přidána";

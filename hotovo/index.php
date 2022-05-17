@@ -1,12 +1,28 @@
 <?php
+session_start();
+include "../api/funkce.php";
 $cookie = "kosik";
 if (
     isset($_POST["key"]) and
     isset($_COOKIE[$cookie]) and
     $_POST["key"] == true
 ) {
-    // TODO: $id = $_COOKIE[$cookie];
+    $_SESSION["stahnout"] = $_COOKIE[$cookie];
+    $out = "";
     setcookie($cookie, "", time() - 3600, "/");
+
+    $pisnicky = zobrazitDb();
+
+    if(strpos($_SESSION["stahnout"],"-")){
+        $j = 0;
+        foreach(explode("-",$_SESSION["stahnout"]) as $i){
+            $out = $out."<div id='dl'><p>".$pisnicky[$j]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[$j]["id"]."'<button>Stáhnout</button></a></div>\n";
+            $j++;
+        }
+    }
+    else{
+        $out = "<div class='dl'><p class='nazev'>".$pisnicky[$j]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[$j]["id"]."'<button>Stáhnout</button></a></div>";
+    }
     echo <<<HTML
     <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +46,7 @@ if (
     </nav>
     <div class="content">
         <h1>Nákup úspěšný</h1>
+        {$out}
     </div>
 </body>
 

@@ -1,43 +1,10 @@
 <?php
-$servername = "localhost";
-$username = "joeuser";
-$password = "BruhMoment";
-$dbName = "joe";
+include "../api/funkce.php";
 $cookie = "kosik";
 
-$conn = new mysqli($servername, $username, $password, $dbName);
+nacistDb();
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "CREATE TABLE skladby (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        nazev VARCHAR(30),
-        cena INT(6)
-        )";
-
-if ($conn->query($sql) === true) {
-    echo "Nová tabulka";
-}
-
-// Vybrat z DB
-$select = "SELECT * FROM skladby";
-$result = $conn->query($select);
-$pisnicky = [];
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while ($row = $result->fetch_assoc()) {
-        array_push($pisnicky, [
-            "id" => $row["id"],
-            "nazev" => $row["nazev"],
-            "cena" => $row["cena"],
-        ]); // uložíme do array
-    }
-}
-
+$pisnicky = zobrazitDb();
 $pocet = count($pisnicky);
 if ($pocet == 1) {
     $slovo = "skladba";
@@ -47,7 +14,6 @@ if ($pocet == 1) {
     $slovo = "skladeb";
 }
 
-$conn->close();
 ?>
 
 <!DOCTYPE html>

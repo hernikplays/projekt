@@ -1,47 +1,16 @@
 <?php
-$servername = "localhost";
-$username = "joeuser";
-$password = "BruhMoment";
-$dbName = "joe";
+include "../api/funkce.php";
 
+// heslo a jméno pro přístup do panelu
 $admin = "admin";
 $adminpass = "password";
 
 if (isset($_POST["submit"])) {
     if ($_POST["username"] == $admin && $_POST["password"] == $adminpass) {
 
-        $conn = new mysqli($servername, $username, $password, $dbName);
+        nacistDb();
 
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
-
-        $sql = "CREATE TABLE skladby (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        nazev VARCHAR(30),
-        cena INT(6)
-        )";
-
-        if ($conn->query($sql) === true) {
-            echo "Table created successfully";
-        }
-
-        // Vybrat z DB
-        $select = "SELECT * FROM skladby";
-        $result = $conn->query($select);
-        $pisnicky = [];
-
-        if ($result->num_rows > 0) {
-            // output data of each row
-            while ($row = $result->fetch_assoc()) {
-                array_push($pisnicky, [
-                    "id" => $row["id"],
-                    "nazev" => $row["nazev"],
-                    "cena" => $row["cena"],
-                ]); // uložíme do array
-            }
-        }
+        $pisnicky = zobrazitDb();
 
         $pocet = count($pisnicky);
         if ($pocet == 1) {
@@ -52,7 +21,6 @@ if (isset($_POST["submit"])) {
             $slovo = "skladeb";
         }
 
-        $conn->close();
         ?>
         <!DOCTYPE html>
 <html lang="en">
@@ -86,6 +54,8 @@ if (isset($_POST["submit"])) {
             <input type="text" name="nazev">
             <label for="cena">Cena:</label>
             <input type="number" name="cena">
+            <label for="cena">Název souboru:</label>
+            <input type="text" name="cesta">
             <input value="insert" hidden name="action"> <!-- TODO -->
             <input type="submit">
         </form>
@@ -107,8 +77,7 @@ if (isset($_POST["submit"])) {
         echo "Uživatelské jméno a heslo nesouhlasí";
     }
 } else {
-    //IF THE FORM WAS NOT SUBMITTED
-    //SHOW FORM
+    // pokud nebyl formulář odeslán, zobrazit ho
     ?><form method="post">
     Username: <input type="text" name="username" /><br />
     Password: <input type="password" name="password" />

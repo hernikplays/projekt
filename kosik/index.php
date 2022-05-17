@@ -1,44 +1,23 @@
 <?php
+include "../api/funkce.php";
 $servername = "localhost";
 $username = "joeuser";
 $password = "BruhMoment";
 $dbName = "joe";
 $cookie = "kosik";
 
-$conn = new mysqli($servername, $username, $password, $dbName);
+nacistDb();
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "CREATE TABLE skladby (
-        id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-        nazev VARCHAR(30),
-        cena INT(6)
-        )";
-
-if ($conn->query($sql) === true) {
-    echo "Nová tabulka";
-}
-
-// Vybrat z DB
-$select = "SELECT * FROM skladby";
-$result = $conn->query($select);
 $pisnicky = [];
 
-if (isset($_COOKIE[$cookie])) {
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            if (strpos($_COOKIE[$cookie], strval($row["id"])) !== false) {
-                // pokud je ID v sušence (v košíku)
-                array_push($pisnicky, [
-                    "id" => $row["id"],
-                    "nazev" => $row["nazev"],
-                    "cena" => $row["cena"],
-                ]); // uložíme do array
-            }
+if(isset($_COOKIE[$cookie])){
+    if(strpos($_COOKIE[$cookie],"-")){
+        foreach (explode("-",$_COOKIE[$cookie]) as $i) {
+            array_push($pisnicky,zobrazitPodleId($i));
         }
+    }
+    else{
+        array_push($pisnicky,zobrazitPodleId($_COOKIE[$cookie]));
     }
 }
 
@@ -51,7 +30,6 @@ if ($pocet == 1) {
     $slovo = "skladeb";
 }
 
-$conn->close();
 ?>
 
 <!DOCTYPE html>
