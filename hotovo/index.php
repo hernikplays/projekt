@@ -15,12 +15,12 @@ if (
     if(strpos($_SESSION["stahnout"],"-")){
         $j = 0;
         foreach(explode("-",$_SESSION["stahnout"]) as $i){
-            $out = $out."<div id='dl'><p>".$pisnicky[$j]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[$j]["id"]."'<button>Stáhnout</button></a></div>\n";
+            $out = $out."<div id='dl'><p class='nazev'>".$pisnicky[$j]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[$j]["id"]."'<button>Stáhnout</button></a></div>\n";
             $j++;
         }
     }
     else{
-        $out = "<div class='dl'><p class='nazev'>".$pisnicky[0]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[0]["id"]."'<button>Stáhnout</button></a></div>";
+        $out = "<div id='dl'><p class='nazev'>".$pisnicky[0]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[0]["id"]."'<button>Stáhnout</button></a></div>";
     }
     echo <<<HTML
     <!DOCTYPE html>
