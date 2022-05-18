@@ -9,7 +9,6 @@ if (
 ) {
     $_SESSION["stahnout"] = $_COOKIE[$cookie];
     $out = "";
-    setcookie($cookie, "", time() - 3600, "/");
 
     $pisnicky = zobrazitDb();
 
@@ -21,7 +20,7 @@ if (
         }
     }
     else{
-        $out = "<div class='dl'><p class='nazev'>".$pisnicky[$j]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[$j]["id"]."'<button>Stáhnout</button></a></div>";
+        $out = "<div class='dl'><p class='nazev'>".$pisnicky[0]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[0]["id"]."'<button>Stáhnout</button></a></div>";
     }
     echo <<<HTML
     <!DOCTYPE html>
