@@ -9,7 +9,7 @@ if (
 ) {
     $_SESSION["stahnout"] = $_COOKIE[$cookie];
     $out = "";
-
+setcookie($cookie, "", time() - 3600, "/");
     $pisnicky = zobrazitDb();
 
     if(strpos($_SESSION["stahnout"],"-")){
