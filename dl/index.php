@@ -21,8 +21,7 @@ if (isset($_SESSION["stahnout"]) && isset($_GET["id"])) {
                 readfile($file);
             }
         }
-    }
-    else{
+    } else {
         $p = zobrazitPodleId($_SESSION["stahnout"]);
         $file = "../soubory/" . $p["soubor"] . ".mp3";
         header("Content-Description: File Transfer");
