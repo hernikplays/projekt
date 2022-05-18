@@ -20,7 +20,7 @@ setcookie($cookie, "", time() - 3600, "/");
         }
     }
     else{
-        $out = "<div id='dl'><p class='nazev'>".$pisnicky[0]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[0]["id"]."'<button>Stáhnout</button></a></div>";
+        $out = "<div id='dl'><p class='nazev'>".$pisnicky[0]["nazev"]."</p><br><a target='_blank' href='../dl?id=".$pisnicky[0]["id"]."'<button>Stáhnout</button></a></div>";
     }
     echo <<<HTML
     <!DOCTYPE html>
