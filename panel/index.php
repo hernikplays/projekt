@@ -5,8 +5,8 @@ include "../api/funkce.php";
 $admin = "admin";
 $adminpass = "password";
 
-if (isset($_POST["submit"])) {
-    if ($_POST["username"] == $admin && $_POST["password"] == $adminpass) {
+if (isset($_POST["submit"])) { // pokud bylo odesláno přihlášení
+    if ($_POST["username"] == $admin && $_POST["password"] == $adminpass) { // a údaje sedí
 
         nacistDb();
 
@@ -56,7 +56,7 @@ if (isset($_POST["submit"])) {
             <input type="number" name="cena">
             <label for="cena">Název souboru:</label>
             <input type="text" name="cesta">
-            <input value="insert" hidden name="action"> <!-- TODO -->
+            <input value="insert" style="display:none;" name="action"> <!-- TODO -->
             <input type="submit">
         </form>
         </div>
@@ -78,10 +78,12 @@ if (isset($_POST["submit"])) {
     }
 } else {
     // pokud nebyl formulář odeslán, zobrazit ho
-    ?><form method="post">
-    Username: <input type="text" name="username" /><br />
-    Password: <input type="password" name="password" />
+    ?>
+    <head><link rel="stylesheet" href="./panel.css"><title>Admin Panel | RoBítz</title></head>
+    <body><form method="post" class="login">
+    <p>Username:</p> <input type="text" name="username" /><br />
+    <p>Password:</p> <input type="password" name="password" /><br>
     <input type='submit' name='submit' />
-</form><?php
+</form></body><?php
 }
 ?>

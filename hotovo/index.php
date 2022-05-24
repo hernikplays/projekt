@@ -7,12 +7,12 @@ if (
     isset($_COOKIE[$cookie]) and
     $_POST["key"] == true
 ) {
-    $_SESSION["stahnout"] = $_COOKIE[$cookie];
+    $_SESSION["stahnout"] = $_COOKIE[$cookie]; // uložíme co chceme stáhnout do SESSION
     $out = "";
 setcookie($cookie, "", time() - 3600, "/");
     $pisnicky = zobrazitDb();
 
-    if(strpos($_SESSION["stahnout"],"-")){
+    if(strpos($_SESSION["stahnout"],"-")){ // připravíme odkazy ke stažení pro všechny zakoupené skladby
         $j = 0;
         foreach(explode("-",$_SESSION["stahnout"]) as $i){
             $out = $out."<div id='dl'><p class='nazev'>".$pisnicky[$j]["nazev"]."</p><a target='_blank' href='../dl?id=".$pisnicky[$j]["id"]."'<button>Stáhnout</button></a></div>\n";

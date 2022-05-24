@@ -5,7 +5,7 @@ $username = "joeuser";
 $password = "BruhMoment";
 $dbName = "joe";
 
-function nacistDb()
+function nacistDb() // vytvoří tabulku pokud neexistuje
 {
     $conn = new mysqli(
         $GLOBALS["servername"],
@@ -33,7 +33,7 @@ function nacistDb()
     $conn->close();
 }
 
-function zobrazitDb()
+function zobrazitDb() // zobrazí všechny uložené údaje v tabulce
 {
     $conn = new mysqli(
         $GLOBALS["servername"],
@@ -68,7 +68,7 @@ function zobrazitDb()
     return $pisnicky;
 }
 
-function zobrazitPodleId($id)
+function zobrazitPodleId($id) // zobrazí jednu určitou skladbu podle její ID
 {
     $conn = new mysqli(
         $GLOBALS["servername"],
