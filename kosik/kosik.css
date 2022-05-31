@@ -28,7 +28,11 @@ ul.nav li a {
   color: white;
   text-align: center;
   padding: 14px 16px;
+  background-color: #50514f;
   text-decoration: none;
+  font-size: initial;
+  border:none;
+  border-radius: 0;
 }
 
 ul.nav li a:hover {
@@ -111,6 +115,22 @@ h2 {
   background-color: rgb(163, 0, 0);
 }
 
-.dl * {
-  display: inline-block;
+a {
+  text-decoration: none;
+  color:black;
+  background-color: lightgreen;
+  padding:16px;
+  font-size: 14px;
+  border:none;
+  border-radius: 6px;
+}
+
+a:hover{
+  color:white;
+  background-color: rgb(107, 179, 107);
+}
+
+a:active{
+  color:white;
+  background-color: rgb(80, 136, 80);
 }
