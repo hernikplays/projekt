@@ -31,7 +31,7 @@ ul.nav li a {
   background-color: #50514f;
   text-decoration: none;
   font-size: initial;
-  border:none;
+  border: none;
   border-radius: 0;
 }
 
@@ -117,20 +117,20 @@ h2 {
 
 a {
   text-decoration: none;
-  color:black;
+  color: black;
   background-color: lightgreen;
-  padding:16px;
+  padding: 16px;
   font-size: 14px;
-  border:none;
+  border: none;
   border-radius: 6px;
 }
 
-a:hover{
-  color:white;
+a:hover {
+  color: white;
   background-color: rgb(107, 179, 107);
 }
 
-a:active{
-  color:white;
+a:active {
+  color: white;
   background-color: rgb(80, 136, 80);
 }
